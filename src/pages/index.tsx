@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 
 import Head from 'next/head';
+import { useRef } from 'react';
 
 import { SubscribeButton } from '../components/SubscribeButton';
 import { stripe } from '../services/stripe';
@@ -41,7 +42,7 @@ export default function Home({ product }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const price = await stripe.prices.retrieve('price_1IZUPqJP4Szb1t43rzZ5Ix2E');
+  const price = await stripe.prices.retrieve('ID_STRIPE_PRODUCT');
 
   const product = {
     priceId: price.id,
@@ -50,7 +51,7 @@ export const getStaticProps: GetStaticProps = async () => {
       currency: 'USD',
     }).format(price.unit_amount / 100),
   };
-''
+  ('');
   return {
     props: {
       product,
